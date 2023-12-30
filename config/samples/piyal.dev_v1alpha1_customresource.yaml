@@ -1,0 +1,12 @@
+apiVersion: piyal.dev/v1alpha1
+kind: CustomResource
+metadata:
+  labels:
+    app.kubernetes.io/name: customresource
+    app.kubernetes.io/instance: customresource-sample
+    app.kubernetes.io/part-of: custom-resource
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: custom-resource
+  name: customresource-sample
+spec:
+  # TODO(user): Add fields here

@@ -1,0 +1,15 @@
+apiVersion: piyal.dev/v1alpha1
+kind: CustomResource
+metadata:
+  name: customresource-sample
+  namespace: demo
+spec:
+  deploymentName: deploy
+  replicas: 3
+  container:
+    image: ashraf10039/httpapiserver
+    port: 8081
+  service:
+    serviceName: "test-svc"
+    serviceType: "ClusterIP"
+    servicePort: 8081

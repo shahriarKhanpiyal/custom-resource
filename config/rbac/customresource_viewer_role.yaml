@@ -1,0 +1,27 @@
+# permissions for end users to view customresources.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: customresource-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: custom-resource
+    app.kubernetes.io/part-of: custom-resource
+    app.kubernetes.io/managed-by: kustomize
+  name: customresource-viewer-role
+rules:
+- apiGroups:
+  - piyal.dev
+  resources:
+  - customresources
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - piyal.dev
+  resources:
+  - customresources/status
+  verbs:
+  - get
