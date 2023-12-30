@@ -1,0 +1,89 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.13.0
+  name: customresources.piyal.dev
+spec:
+  group: piyal.dev
+  names:
+    kind: CustomResource
+    listKind: CustomResourceList
+    plural: customresources
+    singular: customresource
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: CustomResource is the Schema for the customresources API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: CustomResourceSpec defines the desired state of CustomResource
+            properties:
+              container:
+                properties:
+                  image:
+                    type: string
+                  port:
+                    format: int32
+                    type: integer
+                type: object
+              deploymentName:
+                description: 'INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+                  Important: Run "make" to regenerate code after modifying this file'
+                type: string
+              replicas:
+                description: Replicas defines number of pods will be running in the
+                  deployment
+                format: int32
+                type: integer
+              service:
+                description: Service contains ServiceName, ServiceType, ServiceNodePort
+                properties:
+                  serviceName:
+                    type: string
+                  serviceNodePort:
+                    format: int32
+                    type: integer
+                  servicePort:
+                    format: int32
+                    type: integer
+                  serviceType:
+                    type: string
+                required:
+                - servicePort
+                - serviceType
+                type: object
+            required:
+            - container
+            - replicas
+            type: object
+          status:
+            description: CustomResourceStatus defines the observed state of CustomResource
+            properties:
+              availableReplicas:
+                description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                  of cluster Important: Run "make" to regenerate code after modifying
+                  this file'
+                format: int32
+                type: integer
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

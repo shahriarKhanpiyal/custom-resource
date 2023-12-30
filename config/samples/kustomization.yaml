@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- piyal.dev_v1alpha1_customresource.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples
